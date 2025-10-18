@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,6 +46,13 @@ public class BookController {
     @GetMapping("/{id}")
     public ResponseEntity<BookDTO> buscar(@PathVariable Long id) {
         return ResponseEntity.ok(modelMapper.map(bookService.buscarPorId(id), BookDTO.class));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<BookDTO> atualizar(@PathVariable Long id, @RequestBody CreateBookDTO dto) {
+        Book book = modelMapper.map(dto, Book.class);
+        Book updated = bookService.atualizar(id, book);
+        return ResponseEntity.ok(modelMapper.map(updated, BookDTO.class));
     }
 
     @DeleteMapping("/{id}")
