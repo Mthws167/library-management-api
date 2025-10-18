@@ -16,7 +16,6 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    // Regex simples e eficaz para validação de e-mails
     private static final Pattern EMAIL_PATTERN = Pattern.compile(
         "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$",
         Pattern.CASE_INSENSITIVE
