@@ -28,7 +28,7 @@ public class BookService {
         existente.setAutor(book.getAutor());
         existente.setIsbn(book.getIsbn());
         existente.setCategoria(book.getCategoria());
-        existente.setDataPublicacao(book.getDataPublicacao());
+        existente.setData_publicacao(existente.getData_publicacao());
         return bookRepository.save(existente);
     }
 

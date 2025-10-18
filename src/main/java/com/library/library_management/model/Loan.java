@@ -38,9 +38,9 @@ public class Loan {
     private Book livro;
 
     @NotNull
-    private LocalDate dataEmprestimo;
+    private LocalDate data_emprestimo;
 
-    private LocalDate dataDevolucao;
+    private LocalDate data_devolucao;
 
     @NotNull
     private String status; // e.g., "ACTIVE", "RETURNED"

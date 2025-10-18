@@ -37,7 +37,7 @@ public class Book {
     private String isbn;
 
     @NotNull
-    private LocalDate dataPublicacao;
+    private LocalDate data_publicacao;
 
     @NotNull
     private String categoria;

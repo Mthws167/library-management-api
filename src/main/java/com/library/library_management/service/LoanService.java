@@ -32,7 +32,6 @@ public class LoanService {
         User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
         Book book = bookRepository.findById(bookId).orElseThrow(() -> new RuntimeException("Livro não encontrado"));
 
-        // Não permitir empréstimo se já houver um ativo para o mesmo livro
         loanRepository.findByLivroIdAndStatus(bookId, "ACTIVE").ifPresent(l -> {
             throw new RuntimeException("Livro já está emprestado");
         });
@@ -40,7 +39,7 @@ public class LoanService {
         Loan loan = Loan.builder()
                 .usuario(user)
                 .livro(book)
-                .dataEmprestimo(LocalDate.now())
+                .data_emprestimo(LocalDate.now())
                 .status("ACTIVE")
                 .build();
 
@@ -49,11 +48,11 @@ public class LoanService {
 
     public Loan atualizarStatus(Long loanId, String status, LocalDate dataDevolucao) {
         Loan loan = loanRepository.findById(loanId).orElseThrow(() -> new RuntimeException("Empréstimo não encontrado"));
-        if (loan.getDataEmprestimo().isAfter(LocalDate.now())) {
+        if (loan.getData_emprestimo().isAfter(LocalDate.now())) {
             throw new IllegalArgumentException("Data de empréstimo não pode ser maior que hoje");
         }
         loan.setStatus(status);
-        loan.setDataDevolucao(dataDevolucao);
+        loan.setData_devolucao(dataDevolucao);
         return loanRepository.save(loan);
     }
 
@@ -63,5 +62,9 @@ public class LoanService {
 
     public List<Long> livrosJaEmprestadosIdsPorUsuario(Long userId) {
         return loanRepository.findByUsuarioId(userId).stream().map(l -> l.getLivro().getId()).collect(Collectors.toList());
+    }
+
+    public List<Loan> listarTodos() {
+        return loanRepository.findAll();
     }
 }

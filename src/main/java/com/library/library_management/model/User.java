@@ -30,13 +30,13 @@ public class User {
     @NotNull
     private String nome;
 
-    @Email
-    @NotNull
+    @Email(message = "Formato de e-mail inválido")
+    @NotNull(message = "E-mail é obrigatório")
     @Column(unique = true)
     private String email;
 
     @NotNull
-    private LocalDate dataCadastro;
+    private LocalDate data_cadastro;
 
     @NotNull
     private String telefone;
