@@ -67,4 +67,8 @@ public class LoanService {
     public List<Loan> listarTodos() {
         return loanRepository.findAll();
     }
+
+    public List<Loan> listByUserAndStatus(Long userId) {
+        return loanRepository.findByUsuarioIdAndStatus(userId, "ACTIVE");
+    }
 }
