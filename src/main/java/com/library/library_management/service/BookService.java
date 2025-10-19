@@ -45,7 +45,6 @@ public class BookService {
     }
 
     public List<Book> recomendarPorCategoria(Long usuarioId, List<Long> jaEmprestadosIds, String categoria) {
-        // Retorna livros da mesma categoria e que não estejam na lista de ids já emprestados
         return bookRepository.findByCategoriaAndIdNotIn(categoria, jaEmprestadosIds);
     }
 }

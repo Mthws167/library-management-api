@@ -47,7 +47,6 @@ public class UserService {
 
         validarEmail(user.getEmail());
 
-        // Verifica duplicidade apenas se o e-mail foi alterado
         if (!existente.getEmail().equalsIgnoreCase(user.getEmail()) &&
             userRepository.existsByEmail(user.getEmail())) {
             throw new IllegalArgumentException("Já existe um usuário com este e-mail");
@@ -72,7 +71,6 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    // 🔍 Método auxiliar de validação de formato
     private void validarEmail(String email) {
         if (email == null || email.isBlank()) {
             throw new IllegalArgumentException("E-mail não pode ser vazio");

@@ -43,5 +43,5 @@ public class Loan {
     private LocalDate data_devolucao;
 
     @NotNull
-    private String status; // e.g., "ACTIVE", "RETURNED"
+    private String status;
 }
